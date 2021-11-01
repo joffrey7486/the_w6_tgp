@@ -1,25 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Gossip Projet : Enfin en ligne !
 
-Things you may want to cover:
+Un projet réalisé par Mathias & Violette -
 
-* Ruby version
+Des pages étonnantes :
+> Une page par potin
+> Une page par auteur
+> Une page pour NOUS présenter
+> Une page de contact
 
-* System dependencies
+Le tout connectée entre elles et fonctionnelles.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# thp_w6_day26
+N'attendez plus, faites 
+un bundle install 
+rails db:create
+rails db:migrate
+rails db:seed
+et c'est parti ! 
