@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div class="card card-white mb-5">
             <div class="card-heading clearfix border-bottom mb-4">
-                <h4 class="card-title">Découvrez notre Gossip numéro <%= params[:id] %></h4>
+                <h4 class="card-title text-warning">Découvrez notre Gossip numéro <%= params[:id] %></h4>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled">
@@ -30,7 +30,7 @@
                                     <span class="bg-dark text-white"><%= @gossip.content %>
                                     </span>
                                 </div>
-                                <p class="btn btn-secondary btn-outline-secondary"><%= link_to 'Lien vers le profil de la commère', profile_path(@gossip.user_id) %></p>
+                                <p class="btn btn-warning btn-outline-warning"><%= link_to 'Lien vers le profil de la commère', profile_path(@gossip.user_id) %></p>
                             </div>
                         </div>
                     </li>
