@@ -55,7 +55,7 @@ Gossip.all.each do |i|
 end
 
 # Création des dms
- 100.times do
+ 50.times do
   Dm.create(
   content: Faker::Quote.yoda,
   sender: User.all.sample(1).first
@@ -68,4 +68,13 @@ Dm.all.each do |i|
       dm: i,
       recipient: User.all.sample(1).first
     )
+end
+
+# Création de la table comment
+40.times do
+  comment = Comment.create(
+    content: Faker::TvShows::TwinPeaks.quote, 
+    gossip: Gossip.all.sample(1).first, 
+    user: User.all.sample(1).first
+  )
 end
