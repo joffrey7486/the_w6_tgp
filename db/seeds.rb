@@ -1,6 +1,6 @@
 
-User.destroy_all
 Gossip.destroy_all
+User.destroy_all
 City.destroy_all
 Dm.destroy_all
 JoinTagGossip.destroy_all
@@ -10,7 +10,7 @@ Tag.destroy_all
 # Création de 10 villes
 10.times do
   City.create(
-    name:Faker::Address.city,
+    name:Faker::Address.unique.city,
     zip_code:Faker::Address.zip
   )
 end
@@ -20,8 +20,8 @@ end
   User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    description: Faker::Movie.quote,
-    email: Faker::Internet.email,
+    description: Faker::Lorem.sentence(word_count: 15),
+    email: Faker::Internet.unique.email,
     age: rand(10..90),
     city: City.all.sample(1).first
 
@@ -42,7 +42,7 @@ gossips_array = Gossip.all
 # Création de 10 tags
 10.times do
   Tag.create(
-    title:Faker::Color.color_name
+    title:Faker::SlackEmoji.unique.people
   )
 end
 
@@ -56,9 +56,9 @@ end
 
 # Création des dms
  100.times do
-  Dm.create!(
+  Dm.create(
   content: Faker::Quote.yoda,
-  sender: User.all.sample(1).first,
+  sender: User.all.sample(1).first
 )
  end
 
@@ -66,6 +66,6 @@ end
 Dm.all.each do |i|
   JoinUserDm.create(
       dm: i,
-      recipient: User.all.sample(1).first,
+      recipient: User.all.sample(1).first
     )
 end
