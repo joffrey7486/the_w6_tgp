@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :contact
   resources :gossip
   resources :profile
+  resources :city
+  resources :gossip do
+    resources :comment
+  end
 end

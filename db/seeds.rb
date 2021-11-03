@@ -24,7 +24,6 @@ end
     email: Faker::Internet.unique.email,
     age: rand(10..90),
     city: City.all.sample(1).first
-
   )
   users_array = User.all
 end

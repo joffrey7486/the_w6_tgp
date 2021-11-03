@@ -1,4 +1,3 @@
-<br>
 <div class="container">
 <div class="row gutters">
 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -12,9 +11,11 @@
 				<h5 class="user-name"><%= @author.first_name %></h5>
 				<h6 class="user-email"><%= @author.email %></h6>
 			</div>
-			<div class="about text-warning">
+			<h6 class="about text-warning">
 				<p><%= @author.description %></p>
-			</div>
+			</h6>
+			<h6 class="btn btn-outline-warning align-center">
+			<%= link_to 'Ville', city_path(City.find(@author.city.id)) %></h6>
 		</div>
 	</div>
 </div>
@@ -50,22 +51,35 @@
 					<input type="url" class="form-control" id="eMail" placeholder="<%= @author.email %>">
 				</div>
 			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="website">Ville</label>
+					<input type="url" class="form-control" id="city" placeholder="<%= @author.city.name %>">
+				</div>
+			</div>
 		</div>
     <br>
 	</div>
 </div>
 </div>
-</div>
-</div>
-  <div class="d-flex flex-wrap justify-content-center">
-  <% @gossips.each do |gossip|%>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 my-3">
+<div class="card text-center">
+	<h4 class="mb-2 mt-2 text-primary text-center">Ses potins</h4>
+	<div class="card-body">
+		<div class="row gutters">
+  	<% @gossips.each do |gossip|%>
   	<div class="card border-info my-2 mx-3 border-radius rounded" style="width: 18rem;">
 			<div class="card-body">
-							<h5 class="card-title"><%= gossip.title.capitalize %></h5>
-							<p class="card-text"><%= gossip.content %></p>
-							<p class="btn btn-outline-warning"><%= link_to 'Détails du potin', gossip_path(gossip.id) %>
+					<h5 class="card-title"><%= gossip.title.capitalize %></h5>
+						<p class="card-text"><%= gossip.content %></p>
+						<p class="btn btn-outline-warning"><%= link_to 'Détails du potin', gossip_path(gossip.id) %>
 			</div>
   	</div>
   </p>
   <% end %>
-  </div>
+  </div></div>
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -21,9 +21,15 @@
 <ul class="navbar-nav mr-auto">
   <li class="nav-item active">
      <%= link_to "Accueil", home_index_path , class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+   <%= link_to "Nos villes", city_index_path , class: "nav-link"  %>
+  </li>
+  <li class="nav-item">
+   <%= link_to "Nos utilisateurs", profile_index_path , class: "nav-link"  %>
+  </li>
     <li class="nav-item">
    <%= link_to "Equipe", team_index_path , class: "nav-link"  %>
-  </li>
   </li>
   <li class="nav-item">
    <%= link_to "Nous contacter", contact_index_path , class: "nav-link" %>
@@ -31,8 +37,15 @@
 </ul>
 </div>
 </nav>
+<div class="align-self-center">
+<% flash.each do |name, msg| %>
+  <div class='alert alert-<%= name %> text-center'>
+  <%= msg %>
+<% end %>  
+</div>
 
 <%= yield %>
+
 
   </body>
 </html>
