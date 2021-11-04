@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class CommentController < ApplicationController
-  before_action :authenticate_user, only: [:new, :create]
-  before_action :check_user, only: [:edit, :update, :destroy]
-
+  before_action :authenticate_user, only: %i[new create]
+  before_action :check_user, only: %i[edit update destroy]
 
   def show; end
 
@@ -48,10 +47,9 @@ class CommentController < ApplicationController
   private
 
   def check_user
-      unless current_user == Comment.find(params[:id]).user
-        flash[:danger] = "Vous n'avez pas cette autorisation."
-        redirect_to root_path
-      end
+    unless current_user == Comment.find(params[:id]).user
+      flash[:danger] = "Vous n'avez pas cette autorisation."
+      redirect_to root_path
+    end
   end
-
 end

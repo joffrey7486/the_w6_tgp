@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'like/index'
+  get 'like/show'
+  get 'like/update'
+  get 'like/destroy'
+  get 'like/new'
+  get 'like/edit'
   root to: 'home#index'
   resources :home
   resources :welcome
@@ -12,5 +18,7 @@ Rails.application.routes.draw do
   resources :gossip do
     resources :comment
   end
-  resources :session, only: [:new, :create, :destroy]
+  resources :session, only: %i[new create destroy]
+
+  put '/gossip/:id/like', to: 'gossip#like', as: 'like'
 end

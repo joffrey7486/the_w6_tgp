@@ -20,7 +20,6 @@
                     </div>
 
                     <!--Grid column-->
-
                 </div>
 
                 <!--Grid row-->
@@ -33,24 +32,12 @@
                     </div>
                 </div>
 
-                <!--Grid row-->
-                <%# <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0 form-group">
-                          <%= label_tag "Qui es tu ?" %>
-                          <%# <br> %>
-                          <%# <%= select nil, 'user', User.all.collect { |u| [ u.first_name, u.id ] }, { include_blank: true } , class: 'form-control'  %>
-                        <%# </div>
-                    </div>
-                </div>  %>
-
-                <!--Grid row-->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="md-form mb-0 form-group">
                         <%= label_tag "Quelle catégorie ?" %>
                         <%= select nil, 'tag', Tag.all.collect { |t| [ t.title, t.id ] }, { include_blank: true } , class: 'form-control' %>
-                                      </div>
+                        </div>
                     </div>
                 </div>
 

@@ -7,9 +7,10 @@ Dm.destroy_all
 JoinTagGossip.destroy_all
 JoinUserDm.destroy_all
 Tag.destroy_all
+Like.destroy_all
 
 # Création de 10 villes
-10.times do
+30.times do
   City.create(
     name: Faker::Address.unique.city,
     zip_code: Faker::Address.zip
@@ -79,4 +80,10 @@ end
   )
 end
 
-#rajouter like
+# rajouter like
+40.times do
+  like = Like.create(
+    gossip: Gossip.all.sample(1).first,
+    user: User.all.sample(1).first
+  )
+end

@@ -8,9 +8,8 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless current_user
-      flash[:danger] = "Allez hop, on se connecte."
+      flash[:danger] = 'Allez hop, on se connecte.'
       redirect_to new_session_path
     end
   end
-  
 end
