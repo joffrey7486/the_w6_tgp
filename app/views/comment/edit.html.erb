@@ -1,4 +1,3 @@
-
 <section class="mx-auto" style="width: 500px;">
 
 <div class="row d-flex justify-content-around">
@@ -13,31 +12,34 @@
                 <div class="row">
 
                     <!--Grid column-->
-
-                  <div class="row">
                     <div class="col-md-12">
                         <div class="md-form mb-0 form-group">
-                        <%= label_tag :gossip_content, "Ton commentaire" %>
-                        <%= text_field_tag :comment_content , nil, class: 'form-control', value: @comment.content %>
-                      </div>
+                          <%= label_tag :comment_content, "Edition du commentaire" %>
+                          <%= text_field_tag :comment_content , nil, class: 'form-control' , value: @comment.content %>
+                        </div>
                     </div>
+
+                    <!--Grid column-->
+
                 </div>
-              </div>
 
                 <!--Grid row-->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="md-form mb-0 form-group">
                           <%= label_tag "Qui es tu ?" %><br>
-                          <%= select nil, 'user', User.all.collect { |u| [ u.first_name, u.id ] }, { include_blank: true } , class: 'form-control' %>
+                          <%= select nil, 'user', User.all.collect { |u| [ u.first_name, u.id ] }, { include_blank: true } , class: 'form-control'  %>
                         </div>
                     </div>
                 </div>
 
+            <br>
+
                 <div class="text-center text-md-left">
-                  <%= submit_tag 'Soumettre ce commentaire', class: 'btn btn-primary form-control' %>
+                  <%= submit_tag 'Editer le commentaire', class: 'btn btn-primary form-control' %>
                 </div>
+          
                 <div class="status"></div>
-      <br>
-    <% end %>
-  </section>
+          <% end %>
+
+          </section>

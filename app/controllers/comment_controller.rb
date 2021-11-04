@@ -4,15 +4,14 @@ class CommentController < ApplicationController
   end
 
   def new
-    @gossip_id = params[:gossip_id]  
+    @comment = Comment.new
   end
 
   def create
-    @gossip_id = params[:gossip_id]
     puts params
     @comment = Comment.new(content: params[:comment_content], user_id: params[:user], gossip_id: params[:gossip_id])
       if @comment.save
-        redirect_to gossip_path(@gossip_id), success: "Commentaire validé !"
+        redirect_to gossip_path(params[:gossip_id]), success: "Commentaire validé !"
       else
         flash[:danger] = "Retente ta chance !"
         render :action => :new    
@@ -20,15 +19,15 @@ class CommentController < ApplicationController
       end
     end
 
-  def edit
-    @gossip = Gossip.find(params[:id])
-    @comment = Comment.find_by(gossip_id: params[:id])
+  def edit     
+    @gossip = Gossip.find(params[:gossip_id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = Comment.find_by(gossip_id: params[:id])
+    @comment = Comment.find(params[:id])
     if @comment.update(content: params[:comment_content], user_id: params[:user])
-      redirect_to gossip_path(params[:id]), success: "Commentaire validé !"
+      redirect_to gossip_path(params[:gossip_id]), success: "Commentaire validé !"
     else
       flash[:danger] = "Retente ta chance !"
       render :action => :new    
@@ -37,9 +36,9 @@ class CommentController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find_by(gossip_id: params[:id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to gossip_path(params[:id])
+    redirect_to gossip_path(params[:gossip_id])
   end
 
 end

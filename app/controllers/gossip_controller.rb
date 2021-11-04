@@ -15,9 +15,8 @@ class GossipController < ApplicationController
     if @gossip.save
       redirect_to gossip_path(@gossip.id), success: "Gossip validé !"
     else
-      flash[:danger] = "Retente ta chance !"
-      render :action => :new    
-      flash.discard
+      flash.now[:danger] = "Retente ta chance !"
+      render :new    
     end
   end
 
