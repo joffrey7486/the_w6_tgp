@@ -65,4 +65,6 @@ gem 'faker'
 
 gem 'table_print'
 
+gem 'rubocop'
+
 gem 'rubocop-rails'

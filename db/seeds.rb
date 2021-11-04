@@ -24,9 +24,9 @@ end
     description: Faker::Lorem.sentence(word_count: 15),
     email: Faker::Internet.unique.email,
     age: rand(10..90),
-    city: City.all.sample(1).first
+    city: City.all.sample(1).first,
+    password: Faker::Lorem.characters(number: 8)
   )
-  users_array = User.all
 end
 
 # Création de 20 gossips
@@ -78,3 +78,5 @@ end
     user: User.all.sample(1).first
   )
 end
+
+#rajouter like

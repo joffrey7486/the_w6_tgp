@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :join_tag_gossips
   has_many :gossips, through: :join_tag_gossips
   has_many :comments
+  has_many :likes
 
   validates :first_name, presence: true
   validates :last_name, presence: true

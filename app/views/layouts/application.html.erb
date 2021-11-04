@@ -11,7 +11,7 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark sticky-top" >
     <%= link_to "The Gossip Project", home_index_path , class: "nav-link navbar-brand" %>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
@@ -35,9 +35,21 @@
    <%= link_to "Nous contacter", contact_index_path , class: "nav-link" %>
   </li>
 </ul>
+
+<form class="form-inline my-2 my-lg-0 ">
+
+<% if current_user %>
+    <button class="btn btn-dark text-white my-2 my-sm-0"><%= link_to "Se déconnecter", session_path(:user_id), method: :delete, data: { confirm: "Prêt à vous déconnecter ?" } %></button>
+<% else %>
+    <button class="btn btn-dark text-white my-2 my-sm-0"><%= link_to "Se connecter", new_session_path %></button>
+    <button class="btn bg-secondary  my-2 my-sm-0"><%= link_to 'Créer un compte', new_profile_path %></button>
+<% end %>
+  </div>
+</form>
+
 </div>
 </nav>
-<div class="align-self-center">
+<div class="align-self-center ">
 <% flash.each do |name, msg| %>
   <div class='alert alert-<%= name %> text-center'>
   <%= msg %>

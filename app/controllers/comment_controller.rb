@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class CommentController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create]
+  before_action :check_user, only: [:edit, :update, :destroy]
+
+
   def show; end
 
   def new
@@ -9,7 +13,7 @@ class CommentController < ApplicationController
 
   def create
     puts params
-    @comment = Comment.new(content: params[:comment_content], user_id: params[:user], gossip_id: params[:gossip_id])
+    @comment = Comment.new(content: params[:comment_content], user_id: session[:user_id], gossip_id: params[:gossip_id])
     if @comment.save
       redirect_to gossip_path(params[:gossip_id]), success: 'Commentaire validé !'
     else
@@ -26,7 +30,7 @@ class CommentController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update(content: params[:comment_content], user_id: params[:user])
+    if @comment.update(content: params[:comment_content], user_id: session[:user_id])
       redirect_to gossip_path(params[:gossip_id]), success: 'Commentaire validé !'
     else
       flash[:danger] = 'Retente ta chance !'
@@ -40,4 +44,14 @@ class CommentController < ApplicationController
     @comment.destroy
     redirect_to gossip_path(params[:gossip_id])
   end
+
+  private
+
+  def check_user
+      unless current_user == Comment.find(params[:id]).user
+        flash[:danger] = "Vous n'avez pas cette autorisation."
+        redirect_to root_path
+      end
+  end
+
 end

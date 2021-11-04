@@ -14,6 +14,7 @@ class ProfileController < ApplicationController
     @user = User.new(first_name: params[:user_first_name], last_name: params[:user_last_name],
                      description: params[:user_description], age: params[:user_age], email: params[:user_email], password: params[:user_password], city_id: params[:city])
     if @user.save
+      session[:user_id] = @user.id
       redirect_to profile_path(@user.id), success: 'Ton compte a bien été créé'
     else
       puts @user.inspect

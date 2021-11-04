@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class GossipController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create]
+  before_action :check_user, only: [:edit, :update, :destroy]
+  
   def show
     @gossip = Gossip.find(params[:id])
     @comments = Comment.where(gossip_id: params[:id])
@@ -11,8 +14,7 @@ class GossipController < ApplicationController
   end
 
   def create
-    puts params
-    @gossip = Gossip.new(title: params[:gossip_title], content: params[:gossip_content], user_id: params[:user])
+    @gossip = Gossip.new(title: params[:gossip_title], content: params[:gossip_content], user_id: session[:user_id])
     if @gossip.save
       redirect_to gossip_path(@gossip.id), success: 'Gossip validé !'
     else
@@ -27,7 +29,7 @@ class GossipController < ApplicationController
 
   def update
     @gossip = Gossip.find(params[:id])
-    if @gossip.update(title: params[:gossip_title], content: params[:gossip_content], user_id: params[:user])
+    if @gossip.update(title: params[:gossip_title], content: params[:gossip_content], user_id: session[:user_id])
       redirect_to gossip_path(@gossip.id), success: 'Gossip validé !'
     else
       flash[:danger] = 'Retente ta chance !'
@@ -41,4 +43,14 @@ class GossipController < ApplicationController
     @gossip.destroy
     redirect_to root_path
   end
+
+  private
+
+  def check_user
+      unless current_user == Gossip.find(params[:id]).user
+        flash[:danger] = "Vous n'avez pas cette autorisation."
+        redirect_to root_path
+      end
+  end
+
 end

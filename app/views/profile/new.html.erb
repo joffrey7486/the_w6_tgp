@@ -76,11 +76,21 @@
 								<div class="col-md-12">
 									<div class="md-form mb-0 form-group">
 									 <%= label_tag :user_password, "Mot de passe" %>
-									<%= text_field_tag :user_password , nil, class: 'form-control' %>
+									<%= text_field_tag :user_password , nil, class: 'form-control', type: 'password', id: 'myInput' %>
+                  <input type="checkbox" onclick="myFunction()">Show Password
 								</div>
 							</div>
 						</div>
-
+            <script>
+            function myFunction() {
+              var x = document.getElementById("myInput");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
+            }
+            </script>
             <br>
 
                 <div class="text-center text-md-left">
