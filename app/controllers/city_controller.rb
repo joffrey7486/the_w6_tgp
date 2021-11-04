@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class CityController < ApplicationController
   require 'gossip'
 
-  def index
-  end
+  def index; end
 
   def show
     @city = City.find(params[:id])
@@ -10,14 +11,13 @@ class CityController < ApplicationController
     @gossips = find_gossip(@users)
   end
 
-private
+  private
 
   def find_gossip(array)
     find_gossip = []
     array.each do |user|
-        find_gossip << Gossip.find_by(user: user)
-      end
-    return find_gossip.compact
+      find_gossip << Gossip.find_by(user: user)
+    end
+    find_gossip.compact
   end
-  
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateJoinUserDms < ActiveRecord::Migration[5.2]
   def change
     create_table :join_user_dms do |t|
